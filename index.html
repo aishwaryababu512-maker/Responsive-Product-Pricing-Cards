@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Plans</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f4ff;
+    color: #222;
+    padding: 30px 15px;
+}
+
+header {
+    text-align: center;
+    margin: 25px 0 35px;
+}
+
+header h1 {
+    color: #4035a5;
+    font-size: 32px;
+}
+
+header p {
+    color: #666;
+    margin-top: 12px;
+}
+
+.toggle {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.toggle button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: #ddd;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.toggle button.active {
+    background: #5145cd;
+    color: white;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    position: relative;
+    background: white;
+    width: 300px;
+    padding: 35px 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 5px 20px #0001;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 15px 30px #5145cd33;
+}
+
+.card h2 {
+    color: #4035a5;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.price span {
+    font-size: 15px;
+    color: #777;
+}
+
+.card ul {
+    list-style: none;
+    margin: 25px 0;
+    line-height: 2.5;
+}
+
+.card li {
+    border-bottom: 1px solid #eee;
+}
+
+.card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: #5145cd;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.card button:hover {
+    background: #30238e;
+}
+
+.ribbon {
+    position: absolute;
+    top: 18px;
+    right: -35px;
+    background: #ff9f43;
+    color: white;
+    width: 140px;
+    padding: 7px;
+    transform: rotate(40deg);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.popular {
+    background: #e84393;
+}
+
+footer {
+    text-align: center;
+    margin-top: 45px;
+    color: #777;
+}
+
+@media(max-width: 650px) {
+    header h1 {
+        font-size: 26px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Choose Your Perfect Plan</h1>
+    <p>Simple pricing. Powerful features. Grow with us!</p>
+</header>
+
+<div class="toggle">
+    <button id="monthly" class="active"
+        onclick="changePlan('monthly')">
+        Monthly
+    </button>
+
+    <button id="yearly"
+        onclick="changePlan('yearly')">
+        Yearly
+    </button>
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <h2>Basic</h2>
+        <p>Perfect for beginners</p>
+
+        <div class="price">
+            ₹<span id="basic">199</span>
+            <span>/ month</span>
+        </div>
+
+        <ul>
+            <li>✔ 5 Projects</li>
+            <li>✔ Basic Support</li>
+            <li>✔ 5 GB Storage</li>
+            <li>✔ Basic Features</li>
+        </ul>
+
+        <button onclick="selectPlan('Basic')">
+            Choose Plan
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="ribbon popular">POPULAR</div>
+
+        <h2>Pro</h2>
+        <p>Best for professionals</p>
+
+        <div class="price">
+            ₹<span id="pro">499</span>
+            <span>/ month</span>
+        </div>
+
+        <ul>
+            <li>✔ 20 Projects</li>
+            <li>✔ Priority Support</li>
+            <li>✔ 50 GB Storage</li>
+            <li>✔ Advanced Features</li>
+        </ul>
+
+        <button onclick="selectPlan('Pro')">
+            Choose Plan
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="ribbon">BEST VALUE</div>
+
+        <h2>Premium</h2>
+        <p>Best for businesses</p>
+
+        <div class="price">
+            ₹<span id="premium">999</span>
+            <span>/ month</span>
+        </div>
+
+        <ul>
+            <li>✔ Unlimited Projects</li>
+            <li>✔ 24/7 Support</li>
+            <li>✔ 200 GB Storage</li>
+            <li>✔ All Features</li>
+        </ul>
+
+        <button onclick="selectPlan('Premium')">
+            Choose Plan
+        </button>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Pricing Plans | Designed with HTML, CSS & JavaScript</p>
+</footer>
+
+<script>
+function changePlan(type) {
+
+    const prices = {
+        monthly: [199, 499, 999],
+        yearly: [1990, 4990, 9990]
+    };
+
+    document.getElementById("basic").textContent =
+        prices[type][0];
+
+    document.getElementById("pro").textContent =
+        prices[type][1];
+
+    document.getElementById("premium").textContent =
+        prices[type][2];
+
+    document.getElementById("monthly")
+        .classList.toggle("active", type === "monthly");
+
+    document.getElementById("yearly")
+        .classList.toggle("active", type === "yearly");
+}
+
+function selectPlan(plan) {
+    alert("You selected the " + plan + " plan!");
+}
+</script>
+
+</body>
+</html>
